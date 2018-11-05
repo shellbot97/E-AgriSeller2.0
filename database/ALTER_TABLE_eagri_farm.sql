@@ -1,0 +1,1 @@
+ALTER TABLE `eagri_farm` ADD `created_at` DATETIME NULL DEFAULT NULL AFTER `remark`, ADD `created_by` INT(10) NOT NULL AFTER `created_at`, ADD `updated_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `created_by`, ADD `updated_by` INT(10) NOT NULL AFTER `updated_at`;

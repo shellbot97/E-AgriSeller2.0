@@ -1,0 +1,1 @@
+CREATE TABLE `eagri_category` ( `category_id` INT(10) NOT NULL AUTO_INCREMENT , `category_name` VARCHAR(100) NOT NULL , `deleted` INT(1) NOT NULL DEFAULT '0' , `people_id` INT(10) NOT NULL , PRIMARY KEY (`category_id`)) ENGINE = InnoDB;

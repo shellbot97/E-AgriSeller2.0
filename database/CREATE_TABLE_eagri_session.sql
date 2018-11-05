@@ -1,0 +1,1 @@
+CREATE TABLE `eagri_session` ( `session_id` VARCHAR(40) NOT NULL , `ip_address` VARCHAR(155) NULL DEFAULT NULL , `user_agent` VARCHAR(120) NULL DEFAULT NULL , `last_activity` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP , `people_id` INT(10) NOT NULL ) ENGINE = InnoDB;

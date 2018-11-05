@@ -1,2 +1,24 @@
 Nov 5 2018 - 
 	CREATE DATABASE `e-agriseller`;
+
+	CREATE TABLE `eagri_farmer_login` ( `farmer_id` INT(10) NOT NULL AUTO_INCREMENT , `people_id` INT(10) NOT NULL , `username` VARCHAR(255) NOT NULL , `password` VARCHAR(255) NOT NULL , `is_admin` INT(1) NOT NULL DEFAULT '0' , `deleted` INT(1) NOT NULL DEFAULT '0' , `store_id` INT(10) NOT NULL , PRIMARY KEY (`farmer_id`)) ENGINE = InnoDB;
+
+	CREATE TABLE `eagri_merchant_login` ( `merchant_id` INT(10) NOT NULL AUTO_INCREMENT , `people_id` INT(10) NOT NULL , `username` VARCHAR(255) NOT NULL , `password` VARCHAR(255) NOT NULL , `is_admin` INT(1) NOT NULL DEFAULT '0' , `deleted` INT(1) NOT NULL DEFAULT '0' , `store_id` INT(10) NOT NULL , PRIMARY KEY (`merchant_id`)) ENGINE = InnoDB;
+
+	CREATE TABLE `eagri_people` ( `people_id` INT(10) NOT NULL AUTO_INCREMENT , `name` VARCHAR(50) NOT NULL , `phone_number` VARCHAR(255) NOT NULL , `email` VARCHAR(255) NULL DEFAULT NULL , `address` TEXT NULL DEFAULT NULL , `store_id` INT(10) NOT NULL , `referrar_people_id` INT(10) NULL DEFAULT NULL , PRIMARY KEY (`people_id`)) ENGINE = InnoDB;
+
+	ALTER TABLE `eagri_people` ADD `role` VARCHAR(10) NOT NULL AFTER `name`;
+
+	CREATE TABLE `eagri_session` ( `session_id` VARCHAR(40) NOT NULL , `ip_address` VARCHAR(155) NULL DEFAULT NULL , `user_agent` VARCHAR(120) NULL DEFAULT NULL , `last_activity` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP , `people_id` INT(10) NOT NULL ) ENGINE = InnoDB;
+
+	CREATE TABLE `eagri_farm` ( `farm_id` INT(10) NOT NULL AUTO_INCREMENT , `people_id` INT(10) NOT NULL , `latitude` DECIMAL NOT NULL , `longitude` DECIMAL NOT NULL , `postal_code` INT(6) NULL DEFAULT NULL , `category_id` INT(10) NOT NULL , `subcategory_id` INT(10) NULL DEFAULT NULL , `farm_location_id` INT(10) NULL DEFAULT NULL , `docu_id` INT(10) NULL DEFAULT NULL , `remark` TEXT NULL DEFAULT NULL , PRIMARY KEY (`farm_id`)) ENGINE = InnoDB;
+
+	ALTER TABLE `eagri_farm` ADD `created_at` DATETIME NULL DEFAULT NULL AFTER `remark`, ADD `created_by` INT(10) NOT NULL AFTER `created_at`, ADD `updated_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `created_by`, ADD `updated_by` INT(10) NOT NULL AFTER `updated_at`;
+
+	CREATE TABLE `eagri_item` ( `item_id` INT(10) NOT NULL AUTO_INCREMENT , `category_id` INT(10) NOT NULL , `subcategory_id` INT(10) NOT NULL , `item_number` VARCHAR(100) NOT NULL , `people_id` INT(10) NOT NULL , `farm_id` INT(10) NOT NULL , `expire_at` DATE NULL DEFAULT NULL , `remarks` TEXT NULL DEFAULT NULL , `description` TEXT NULL DEFAULT NULL , `created_by` INT(10) NOT NULL , `created_at` DATETIME NULL DEFAULT NULL , `updated_by` INT(10) NOT NULL , `updated_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP , PRIMARY KEY (`item_id`)) ENGINE = InnoDB;
+
+	CREATE TABLE `eagri_category` ( `category_id` INT(10) NOT NULL AUTO_INCREMENT , `category_name` VARCHAR(100) NOT NULL , `deleted` INT(1) NOT NULL DEFAULT '0' , `people_id` INT(10) NOT NULL , PRIMARY KEY (`category_id`)) ENGINE = InnoDB;
+
+	CREATE TABLE `eagri_sub_category` ( `sub_category_id` INT(10) NOT NULL AUTO_INCREMENT , `sub_category_name` VARCHAR(50) NOT NULL , `category_id` INT(10) NOT NULL , `deleted` INT(1) NOT NULL DEFAULT '0' , PRIMARY KEY (`sub_category_id`)) ENGINE = InnoDB;
+
+	
