@@ -23,3 +23,9 @@ server setup steps -
 				AllowOverride All
 				</Directory>
 
+
+
+
+
+permissions - 
+sudo chmod -R 755 /opt/lampp/htdocs/TS_Project	
