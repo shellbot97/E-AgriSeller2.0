@@ -21,4 +21,31 @@ Nov 5 2018 -
 
 	CREATE TABLE `eagri_sub_category` ( `sub_category_id` INT(10) NOT NULL AUTO_INCREMENT , `sub_category_name` VARCHAR(50) NOT NULL , `category_id` INT(10) NOT NULL , `deleted` INT(1) NOT NULL DEFAULT '0' , PRIMARY KEY (`sub_category_id`)) ENGINE = InnoDB;
 
+
+Nov 8 - 
+
+	DROP TABLE eagri_farmer_login;
+
+	ALTER TABLE eagri_merchant_login RENAME TO eagri_user_login;
+
+	CREATE TABLE `eagri_store_config` ( `store_id` INT(10) NOT NULL AUTO_INCREMENT ,  `people_id` INT(10) NOT NULL ,  `latitude` DECIMAL(11,8) NULL DEFAULT NULL ,  `longitude` DECIMAL(11,8) NULL DEFAULT NULL ,  `category_id` INT(10) NOT NULL ,  `subcategory_id` INT(10) NOT NULL ,  `remark` TEXT NULL DEFAULT NULL ,  `created_by` INT(10) NOT NULL ,  `created_at` DATETIME NULL DEFAULT NULL ,  `updated_by` INT(10) NULL DEFAULT NULL ,  `update_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ,    PRIMARY KEY  (`store_id`)) ENGINE = InnoDB;
+
+	ALTER TABLE `eagri_farm` CHANGE `latitude` `latitude` DECIMAL(11,8) NOT NULL, CHANGE `longitude` `longitude` DECIMAL(11,8) NOT NULL;
+
+	ALTER TABLE `eagri_farm` ADD `deleted` INT(1) NOT NULL DEFAULT '0' AFTER `updated_by`;
+
+	ALTER TABLE `eagri_item` ADD `deleted` INT(1) NOT NULL DEFAULT '0' AFTER `updated_at`;
+
+	ALTER TABLE `eagri_store_config` ADD `deleted` INT(1) NOT NULL DEFAULT '0' AFTER `update_at`;
+
+	CREATE TABLE `eagri_item_quantities` ( `quantity_id` INT(10) NOT NULL AUTO_INCREMENT , `item_id` INT(10) NOT NULL , `quantity` DECIMAL(15,2) NOT NULL , `purchase_price` DECIMAL(15,2) NULL DEFAULT NULL , `mrp` DECIMAL(15,2) NULL DEFAULT NULL , `discount` DECIMAL(5,2) NULL DEFAULT NULL , `selling_price` DECIMAL(15,2) NOT NULL , `tax_percent` DECIMAL(15,2) NOT NULL , `tax_type` VARCHAR(25) NOT NULL , `remark` TEXT NULL DEFAULT NULL , `uploaded_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP , PRIMARY KEY (`quantity_id`)) ENGINE = InnoDB;
+
+	CREATE TABLE `eagri_sale` ( `sale_id` INT(10) NOT NULL AUTO_INCREMENT , `sale_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP , `seller_people_id` INT(10) NOT NULL , `buyer_people_id` INT(10) NOT NULL , `sale_loc_latitude` DECIMAL(11,8) NULL DEFAULT NULL , `sale_loc_longitude` DECIMAL(11,8) NULL DEFAULT NULL , `invoice_number` VARCHAR(50) NOT NULL , `remark` TEXT NULL DEFAULT NULL , `total_invoice_amount` DECIMAL(15,2) NOT NULL , `hash` VARCHAR(100) NULL DEFAULT NULL , `status` VARCHAR(10) NULL DEFAULT NULL , PRIMARY KEY (`sale_id`)) ENGINE = InnoDB;
+
+	CREATE TABLE `eagri_sale_item` ( `sale_item_id` INT(10) NOT NULL AUTO_INCREMENT , `sale_id` INT(10) NOT NULL , `item_id` INT(10) NOT NULL , `quantity_purchased` DECIMAL(15,2) NOT NULL , `item_unit_purchase` DECIMAL(15,2) NULL DEFAULT NULL , `item_unit_mrp` DECIMAL(15,2) NULL DEFAULT NULL , `item_unit_discount` DECIMAL(15,2) NULL DEFAULT NULL , `item_unit_selling` DECIMAL(15,2) NOT NULL , `tax_percent` DECIMAL(5,2) NOT NULL , `tax_amount` DECIMAL(15,2) NOT NULL , `remark` TEXT NULL DEFAULT NULL , PRIMARY KEY (`sale_item_id`)) ENGINE = InnoDB;
+
+	CREATE TABLE `eagri_sale_payment` ( `sale_payment_id` INT(10) NOT NULL AUTO_INCREMENT , `sale_id` INT(10) NOT NULL , `invoice_number` VARCHAR(50) NOT NULL , `payment_type` VARCHAR(10) NOT NULL , `payment_type_number` VARCHAR(50) NOT NULL , `transaction_date` DATETIME NULL DEFAULT NULL , `transation_message` VARCHAR(250) NULL DEFAULT NULL , `settlement_status` VARCHAR(250) NULL DEFAULT NULL , `total_invoice_amount` DECIMAL(15,2) NOT NULL ,  `amount_due` DECIMAL(15,2) NOT NULL , `settlement_time` DATETIME NULL DEFAULT NULL , `hash` VARCHAR(250) NULL DEFAULT NULL , PRIMARY KEY (`sale_payment_id`)) ENGINE = InnoDB;
+
+	CREATE TABLE `eagri_sale_review` ( `review_id` INT(10) NOT NULL AUTO_INCREMENT , `review_stars` INT(10) NOT NULL , `review_text` TEXT NULL , `review_reason` VARCHAR(250) NULL , `sale_id` INT(10) NOT NULL , `invoice_number` VARCHAR(50) NOT NULL , `flag_abuse` VARCHAR(250) NULL , `deleted` INT(1) NOT NULL DEFAULT '0' , PRIMARY KEY (`review_id`)) ENGINE = InnoDB;
+
 	

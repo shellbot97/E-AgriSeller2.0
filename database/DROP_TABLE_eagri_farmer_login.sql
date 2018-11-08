@@ -1,0 +1,1 @@
+DROP TABLE eagri_farmer_login

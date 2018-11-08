@@ -1,0 +1,1 @@
+ALTER TABLE eagri_merchant_login RENAME TO eagri_user_login;

@@ -1,0 +1,1 @@
+ALTER TABLE `eagri_farm` CHANGE `latitude` `latitude` DECIMAL(11,8) NOT NULL, CHANGE `longitude` `longitude` DECIMAL(11,8) NOT NULL;

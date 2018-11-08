@@ -1,0 +1,1 @@
+CREATE TABLE `eagri_sale_review` ( `review_id` INT(10) NOT NULL AUTO_INCREMENT , `review_stars` INT(10) NOT NULL , `review_text` TEXT NULL , `review_reason` VARCHAR(250) NULL , `sale_id` INT(10) NOT NULL , `invoice_number` VARCHAR(50) NOT NULL , `flag_abuse` VARCHAR(250) NULL , `deleted` INT(1) NOT NULL DEFAULT '0' , PRIMARY KEY (`review_id`)) ENGINE = InnoDB;
