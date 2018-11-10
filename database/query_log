@@ -48,4 +48,12 @@ Nov 8 -
 
 	CREATE TABLE `eagri_sale_review` ( `review_id` INT(10) NOT NULL AUTO_INCREMENT , `review_stars` INT(10) NOT NULL , `review_text` TEXT NULL , `review_reason` VARCHAR(250) NULL , `sale_id` INT(10) NOT NULL , `invoice_number` VARCHAR(50) NOT NULL , `flag_abuse` VARCHAR(250) NULL , `deleted` INT(1) NOT NULL DEFAULT '0' , PRIMARY KEY (`review_id`)) ENGINE = InnoDB;
 
+Nov 10 - 
+
+	CREATE TABLE `eagri_documents` ( `docu_id` INT(10) NOT NULL AUTO_INCREMENT , `id_proof` VARCHAR(100) NOT NULL , `residence_proof` VARCHAR(100) NOT NULL , `land_doc` VARCHAR(100) NOT NULL , `ndc` VARCHAR(100) NOT NULL , `sale_agreement` VARCHAR(100) NOT NULL , `bank_statement` VARCHAR(100) NOT NULL , `photo` VARCHAR(100) NOT NULL , `store_doc` VARCHAR(100) NOT NULL , `remark` TEXT NOT NULL , PRIMARY KEY (`docu_id`)) ENGINE = InnoDB;
+
+	ALTER TABLE `eagri_store_config` ADD `docu_id` INT(10) NOT NULL AFTER `subcategory_id`;
+
+	ALTER TABLE `eagri_store_config` ADD `postal_code` INT(6) NULL AFTER `longitude`;
+
 	

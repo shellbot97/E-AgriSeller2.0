@@ -1,0 +1,1 @@
+ALTER TABLE `eagri_store_config` ADD `postal_code` INT(6) NULL AFTER `longitude`;

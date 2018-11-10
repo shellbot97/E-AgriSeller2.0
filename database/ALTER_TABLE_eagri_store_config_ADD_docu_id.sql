@@ -1,0 +1,1 @@
+ALTER TABLE `eagri_store_config` ADD `docu_id` INT(10) NOT NULL AFTER `subcategory_id`;
