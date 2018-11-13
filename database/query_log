@@ -56,4 +56,11 @@ Nov 10 -
 
 	ALTER TABLE `eagri_store_config` ADD `postal_code` INT(6) NULL AFTER `longitude`;
 
+Nov 12 - 
+	
+	DROP TABLE eagri_session;
+
+	CREATE TABLE `eagri_session` ( `session_id` VARCHAR(40) NOT NULL , `ip_address` VARCHAR(155) NULL DEFAULT NULL , `user_agent` VARCHAR(120) NULL DEFAULT NULL , `last_activity` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP , `people_id` INT(10) NOT NULL ) ENGINE = InnoDB;
+
+	ALTER TABLE `eagri_user_login` CHANGE `merchant_id` `login_id` INT(10) NOT NULL AUTO_INCREMENT;
 	
